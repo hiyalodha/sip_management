@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease;
+}
+
+html.dark body {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+/*
+ * Dark mode overrides for the app's existing "ink"/"white" surface utility
+ * classes. Rather than hand-adding `dark:` variants to every element across
+ * every page, we override the compiled utility classes directly when an
+ * ancestor has the `dark` class — this retrofits dark mode onto the whole
+ * app from one place. Semantic status colors (emerald/amber/red/violet
+ * badges etc.) are left as-is; their pastel chips read fine as accents on
+ * a dark card.
+ */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark .bg-white { background-color: #1e293b; }
+html.dark .bg-ink-50 { background-color: #0f172a; }
+html.dark .bg-ink-100 { background-color: #334155; }
+html.dark .bg-ink-200 { background-color: #475569; }
+html.dark .bg-ink-800 { background-color: #0b1120; }
+html.dark .bg-ink-900 { background-color: #0b1120; }
+
+html.dark .border-ink-100 { border-color: #1e293b; }
+html.dark .border-ink-200 { border-color: #334155; }
+html.dark .border-ink-300 { border-color: #475569; }
+
+html.dark .ring-ink-200 { --tw-ring-color: #334155; }
+
+html.dark .text-ink-900 { color: #f1f5f9; }
+html.dark .text-ink-800 { color: #e2e8f0; }
+html.dark .text-ink-700 { color: #cbd5e1; }
+html.dark .text-ink-600 { color: #94a3b8; }
+html.dark .text-ink-500 { color: #94a3b8; }
+html.dark .text-ink-400 { color: #64748b; }
+html.dark .text-ink-300 { color: #475569; }
+
+html.dark .placeholder\:text-ink-400::placeholder { color: #475569; }
+
+html.dark .hover\:bg-ink-50:hover { background-color: #1e293b; }
+html.dark .hover\:bg-ink-100:hover { background-color: #334155; }
+html.dark .hover\:bg-ink-50\/60:hover { background-color: rgba(30, 41, 59, 0.6); }
+html.dark .hover\:bg-ink-800:hover { background-color: #0b1120; }
+html.dark .hover\:border-ink-300:hover { border-color: #475569; }
+html.dark .hover\:text-ink-600:hover { color: #94a3b8; }
+html.dark .hover\:text-ink-700:hover { color: #cbd5e1; }
+html.dark .hover\:text-ink-800:hover { color: #e2e8f0; }
+html.dark .hover\:text-ink-900:hover { color: #f1f5f9; }
+
+html.dark .bg-white\/80 { background-color: rgba(15, 23, 42, 0.8); }
+
+html.dark .bg-auth-gradient {
+  background-image: radial-gradient(circle at top left, #1e293b 0%, #0f172a 45%, #0b1120 100%);
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  color-scheme: dark;
+}
+
+::selection {
+  background-color: #c7d2fe;
+  color: #1e1b4b;
+}
+
+/* Slim, unobtrusive scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+  border: 2px solid #f8fafc;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: none;
+}
