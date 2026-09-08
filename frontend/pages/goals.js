@@ -21,6 +21,31 @@ const PRESETS = [
   { label: '🆘 Emergency Fund', amount: 20000 }
 ];
 
+// Countdown helpers for a goal's target date — surfaces urgency (or "overdue")
+// right next to the deadline instead of leaving the user to do the math.
+function daysLeftValue(targetDate) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const target = new Date(targetDate);
+  target.setHours(0, 0, 0, 0);
+  return Math.round((target - today) / (1000 * 60 * 60 * 24));
+}
+
+function daysLeftLabel(targetDate) {
+  const days = daysLeftValue(targetDate);
+  if (days < 0) return `${Math.abs(days)}d overdue`;
+  if (days === 0) return 'due today';
+  if (days === 1) return '1 day left';
+  return `${days} days left`;
+}
+
+function daysLeftClass(targetDate) {
+  const days = daysLeftValue(targetDate);
+  if (days < 0) return 'text-red-600 font-semibold';
+  if (days <= 7) return 'text-amber-600 font-semibold';
+  return 'text-ink-400';
+}
+
 function GoalCard({ goal, sips, contributors, onDelete, onLeave, onLink, onUnlink, onCopyCode, expandedId, setExpandedId, availableSips, currentUserId }) {
   const pct = Math.min(100, Math.round((goal.Invested / goal.Target_Amount) * 100));
   const isExpanded = expandedId === goal.Goal_ID;
@@ -42,6 +67,9 @@ function GoalCard({ goal, sips, contributors, onDelete, onLeave, onLink, onUnlin
           <p className="text-sm text-ink-500 mt-0.5">
             ₹{goal.Invested.toLocaleString('en-IN')} of ₹{goal.Target_Amount.toLocaleString('en-IN')}
             {goal.Target_Date && ` · by ${new Date(goal.Target_Date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`}
+            {goal.Target_Date && !goal.Achieved && (
+              <span className={daysLeftClass(goal.Target_Date)}> · {daysLeftLabel(goal.Target_Date)}</span>
+            )}
           </p>
         </div>
         {goal.Achieved && (
