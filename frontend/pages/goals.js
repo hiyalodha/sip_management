@@ -426,6 +426,7 @@ export default function GoalsPage() {
                 <label className={labelClass}>Target date (optional)</label>
                 <input
                   type="date"
+                  min={new Date().toISOString().slice(0, 10)}
                   value={form.targetDate}
                   onChange={(e) => setForm({ ...form, targetDate: e.target.value })}
                   className={inputClass}
