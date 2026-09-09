@@ -273,7 +273,11 @@ export default function SipPage() {
                 </div>
                 <div>
                   <label className={labelClass}>Start date</label>
-                  <input name="startDate" type="date" required value={form.startDate} onChange={handleChange} className={inputClass} />
+                  <input
+                    name="startDate" type="date" required
+                    min={new Date().toISOString().slice(0, 10)}
+                    value={form.startDate} onChange={handleChange} className={inputClass}
+                  />
                 </div>
 
                 <label className="flex items-start gap-2.5 rounded-xl bg-amber-50 border border-amber-100 px-3.5 py-3 cursor-pointer">
