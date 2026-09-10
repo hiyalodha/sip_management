@@ -25,7 +25,8 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: name === 'panNumber' ? value.toUpperCase() : value });
   }
 
   async function handleSubmit(e) {
