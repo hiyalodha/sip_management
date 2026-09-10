@@ -482,7 +482,7 @@ export default function Profile() {
               <input
                 placeholder="IFSC code" required
                 value={accountForm.ifscCode}
-                onChange={(e) => setAccountForm({ ...accountForm, ifscCode: e.target.value })}
+                onChange={(e) => setAccountForm({ ...accountForm, ifscCode: e.target.value.toUpperCase() })}
                 className={`${inputClass} uppercase`}
               />
               <div className="sm:col-span-3 flex gap-3">

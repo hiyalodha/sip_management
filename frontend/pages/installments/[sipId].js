@@ -244,7 +244,7 @@ export default function InstallmentsPage() {
             <input
               placeholder="IFSC code" required
               value={accountForm.ifscCode}
-              onChange={(e) => setAccountForm({ ...accountForm, ifscCode: e.target.value })}
+              onChange={(e) => setAccountForm({ ...accountForm, ifscCode: e.target.value.toUpperCase() })}
               className={`${inputClass} uppercase`}
             />
             <button type="submit" className="bg-primary-600 hover:bg-primary-700 text-white rounded-lg py-2.5 text-sm font-semibold shadow-card transition-colors">
